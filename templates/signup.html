@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="col-md-12 col-sm-12">
+      <h1 class="mhs">Create Account</h1>
+      <p class = "have-account">
+      Already have an account?
+      <a href="/blog/login">Sign in</a>
+      </p>
+      <div class = "form">
+        <form method="post">
+          <fieldset class="form-field">
+            <label class="form-label">Username</label>
+            <input class="form-input" type="text" name="username" value="{{username}}">
+            <label class="error">{{error_username}}</label>
+          </fieldset>
+          <fieldset class="form-field">
+            <label class="form-label">Password</label>
+            <input class="form-input" type="password" name="password" value="">
+            <label class="error">{{error_password}}</label>
+          </fieldset>
+          <fieldset class="form-field">
+            <label class="form-label">Verify Password</label>
+            <input class="form-input" type="password" name="verify" value="">
+            <label class="error">{{error_verify}}</label>
+          </fieldset>
+          <fieldset class="form-field">
+            <label class="form-label">Email (Optional)</label>
+            <input class="form-input" type="email" name="email" value="{{email}}">
+            <label class="error">{{error_email}}</label>
+          </fieldset>
+          <input class = "btn" type="submit" value="Create Account">
+        </form>
+      </div>
+    </div>
+
+{% endblock %}

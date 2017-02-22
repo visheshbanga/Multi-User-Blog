@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="col-md-12 col-sm-12">
+  <h1 class="mhs">{{heading}}</h1>
+  <hr>
+  <div class = "form">
+    <form method="post">
+      <fieldset class="form-field">
+        <label class="form-label">Subject</label>
+        <input class="form-input" type="text" name="subject" value="{{subject}}">
+      </fieldset>
+      <fieldset class="form-field">
+        <label class="form-label">Blog</label>
+        <textarea name="content">{{content}}</textarea>
+      </fieldset>
+      <div class="error">
+        {{error}}
+      </div>
+      <input class = "btn" type="submit" name="post" value="Post">
+      <input class = btn type="submit" name="cancel" value="Cancel">
+    </form>
+  </div>
+</div>
+
+{% endblock %}

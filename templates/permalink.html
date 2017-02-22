@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {{post.render() | safe}}
+
+  <!-- Edit/Delete -->
+
+  {% if user %}
+  <div class="post-options">
+    <form method="post" id="post_form">
+      <input type="submit" class="btn" name="edit" value="Edit">
+      <input type="button" class="btn" value="Delete" data-toggle="modal" data-target="#myModal">
+    </form>
+    <span class="error">
+        {{error}}
+    </span>
+  </div>
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">{{post.subject}}</h4>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete?</p>
+        </div>
+        <div class="modal-footer">
+          <input type="submit" name="delete" class="btn" value="Delete" form="post_form">
+          <input type="button" class="btn btn-default" data-dismiss="modal" value="Close">
+        </div>
+      </div>
+
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="post-like col-md-1 col-sm-10">
+    <form method="post">
+      {% if liked %}
+        <input type="submit" class="btn" value="Unlike" name="unlike">
+      {% else %}
+        <input type="submit" class="btn" value="Like" name="like">
+      {% endif %}
+    </form>
+  </div>
+
+  <div class="post-contribution col-md-11 col-sm-10">
+    <div class="post-likes">
+      Likes: {{likes.count()}} | Comments: {{comments.count()}}
+    </div>
+  </div>
+
+  <br>
+  <!-- Comments -->
+  <div class="container">
+      <form method="post">
+        <input class="form-input" type="text" name="comment_text">
+        <input class="btn" type="submit" name="comment" value="Comment">
+      </form>
+      <div class="error">{{comment_error}}</div>
+  <br>
+  {% for c in comments %}
+    {{ c.render() | safe }}
+  {% endfor %}
+  </div>
+
+{% endblock %}

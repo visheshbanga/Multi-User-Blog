@@ -1,0 +1,16 @@
+{% set p_id = p.key().id() %}
+<div class="post" onclick="location.href='{{'/blog/%s' % p_id }}'">
+  <div class="post-heading">
+    <div class="post-title">
+      {{p.subject}}
+    </div>
+
+    <div class="post-date">
+      {{p.created.strftime("%b %d, %Y")}}
+    </div>
+  </div>
+
+  <div class="post-content">
+    {{p._render_text | safe}}
+  </div>
+</div>
